@@ -23,7 +23,7 @@ class Solution {
                 if(nums[mid]>nums[end]){
                     start =mid+1;
                 }else{
-                    end=mid;
+                    end=mid; 
                 }
             }
             return nums[start];
