@@ -6,25 +6,28 @@ After performing at most k replacements, return the length of the longest substr
 #include <bits/stdc++.h>
 using namespace std;
 
-class Solution {
-    public:
-        int characterReplacement(string s, int k) {
-            unordered_map<char,int> count;
-            int ans=0;
-            int l=0, maxfr=0;
-    
-            for(int r=0;r<s.size();r++){
-                count[s[r]]++;
-                maxfr=max(maxfr,count[s[r]]);
-                while((r-l+1)-maxfr>k){ //the number of characters that need to be replaced to make the entire window consist of a single character..
-                    count[s[l]]--;
-                    l++;
-                }
-                ans=max(ans, r-l+1);
-            }
-            return ans;
-        }
-    };
+class Solution
+{
+public:
+    int characterReplacement(string s, int k)
+    {
+        unordered_map<char, int> count;
+        int ans = 0;
+        int l = 0, maxfr = 0;
 
-    //If the window becomes invalid (needed replacements > k), we move l forward until it becomes valid again.
-    
+        for (int r = 0; r < s.size(); r++)
+        {
+            count[s[r]]++;
+            maxfr = max(maxfr, count[s[r]]);
+            while ((r - l + 1) - maxfr > k)
+            { // the number of characters that need to be replaced to make the entire window consist of a single character..
+                count[s[l]]--;
+                l++;
+            }
+            ans = max(ans, r - l + 1);
+        }
+        return ans;
+    }
+};
+
+// If the window becomes invalid (needed replacements > k), we move l forward until it becomes valid again.
