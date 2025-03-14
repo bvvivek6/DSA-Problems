@@ -18,22 +18,27 @@ Travel to station 3. The cost is 5. Your gas is just enough to travel back to st
 Therefore, return 3 as the starting index.
 */
 
+#include <bits/stdc++.h>
+using namespace std;
 
-
-class Solution {
+class Solution
+{
 public:
-    int canCompleteCircuit(vector<int>& gas, vector<int>& cost) {
-        int totalgas=0,totalcost=0, start=0, tank=0;
-        for(int i=0;i<gas.size();i++){
-            totalgas+= gas[i];
-            totalcost+= cost[i];
+    int canCompleteCircuit(vector<int> &gas, vector<int> &cost)
+    {
+        int totalgas = 0, totalcost = 0, start = 0, tank = 0;
+        for (int i = 0; i < gas.size(); i++)
+        {
+            totalgas += gas[i];
+            totalcost += cost[i];
 
-            tank+=  gas[i]-cost[i];
-            if(tank<0){
-                start=i+1;
-                tank=0;
+            tank += gas[i] - cost[i];
+            if (tank < 0)
+            {
+                start = i + 1;
+                tank = 0;
             }
         }
-        return (totalgas<totalcost)?-1:start;
+        return (totalgas < totalcost) ? -1 : start;
     }
 };
