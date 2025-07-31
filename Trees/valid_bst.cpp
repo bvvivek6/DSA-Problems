@@ -12,7 +12,8 @@ Both the left and right subtrees are also binary search trees.
 
 #include <bits/stdc++.h>
 using namespace std;
-struct TreeNode{
+struct TreeNode
+{
     int val;
     TreeNode *left;
     TreeNode *right;
@@ -20,18 +21,26 @@ struct TreeNode{
     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
 };
+class Solution
+{
+public:
+    long prev = LONG_MIN;
 
-class Solution {
-    public:
-         bool isValidBST(TreeNode* root, long minVal = LONG_MIN, long maxVal = LONG_MAX) {
-            if(!root){
-                return true;
-            }
-            if (root->val <= minVal || root->val >= maxVal) {
-                return false;
-            }
-    
-             return isValidBST(root->left, minVal, root->val) &&
-                   isValidBST(root->right, root->val, maxVal);
-        }
-    };
+    bool isValidBST(TreeNode *root)
+    {
+        if (!root)
+            return true;
+
+        // Left subtree
+        if (!isValidBST(root->left))
+            return false;
+
+        // Current node check
+        if (root->val <= prev)
+            return false;
+        prev = root->val;
+
+        // Right subtree
+        return isValidBST(root->right);
+    }
+};
