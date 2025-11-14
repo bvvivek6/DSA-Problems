@@ -12,6 +12,19 @@ Output: 1
 Explanation: 1 boat (1, 2)
 */
 
+/*
+This is a two-pointer greedy approach:
+Sort the array.
+
+Use two pointers:
+i (lightest person, start of array)
+j (heaviest person, end of array)
+If the lightest + heaviest ≤ limit → they share a boat → move both.
+Else → the heaviest person goes alone → move only j.
+Increment the boat count each time.
+
+*/
+
 #include <bits/stdc++.h>
 using namespace std;
 class Solution
